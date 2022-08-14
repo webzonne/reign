@@ -1,0 +1,17 @@
+.tarjeta{
+    border: 1px solid gray;
+    border-radius:5px;
+}
+.card{
+    display: flex;
+    height:150px;
+}
+.card a{
+    width: 80%;
+    height:150px;
+}
+
+.image{
+    width: 20%;
+    cursor: pointer;
+}
