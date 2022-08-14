@@ -1,0 +1,21 @@
+.AllComponent{
+    margin: 150px 150px;
+}
+
+.Allcontainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 365px);
+    height:150px;
+    gap: 20px;
+    padding: 10px;
+    justify-content: center;
+  }
+.selectores{
+    display: flex;
+    justify-content: center;
+}
+.selectores div{
+    border: 1px solid;
+    padding: 10px;
+    cursor: pointer;
+}
