@@ -4,11 +4,10 @@ import { getDataAngular, getDataReact, getDataVue } from "../Api";
 import Tarjeta from "../components/Tarjeta";
 import "./All.css";
 
-export default function All() {
+export default function All(like) {
   const [framework, setframework] = useState("");
   const [data, setdata] = useState("");
-  const [selector, setselector] = useState(true);
-  const [like, setlike] =useState(false)
+
 
   useEffect(() => {
     
@@ -46,45 +45,32 @@ export default function All() {
     };
     getData();
     const localData = JSON.parse(localStorage.getItem('saveData'));
+    //const localDataLike = localData.map(e=>({...e, like:false}))
     if(localData){
       setdata(localData)
     }
-  }, [framework, like]);
+  }, [framework,like]);
 
-  const selectorALL = ()=>{
-      setselector(true)
-  }
 
-  const selectorFaves = ()=>{
-    setselector(false)
-}
 
   return (
     <div>
-      <div className="selectores">
-        <div onClick={selectorALL}>
-          ALL
-        </div>
-        <div onClick={selectorFaves}>
-          My Faves
-        </div>
-      </div>
     <div className="AllComponent">
-        {selector ?<select defaultValue={framework} onChange={(e)=>setframework(e.target.value)}>
+        <select defaultValue={framework} onChange={(e)=>setframework(e.target.value)}>
               <option hidden>Select your news</option>
               <option value="angular">Angular</option>
               <option value="react">React</option>
               <option value="vue">Vue</option>
-        </select>:""}
+        </select>
       <div className="Allcontainer">
-      {selector ? data && data.map((elements)=>{
+       { data && data.map((elements)=>{
               return(
                   <Tarjeta 
                   key={elements.objectID} 
                   elements={elements}
                 />
               )
-            }):<p>nothing</p>}
+            })}
       </div>
     </div>
     </div>

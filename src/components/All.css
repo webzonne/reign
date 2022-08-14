@@ -1,7 +1,6 @@
 .AllComponent{
     margin: 150px 150px;
 }
-
 .Allcontainer{
     display: grid;
     grid-template-columns: repeat(auto-fill, 365px);

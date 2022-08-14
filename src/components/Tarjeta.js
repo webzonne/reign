@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
 import './Tarjeta.css';
 import { useContext } from 'react';
 import {favoritesContext} from '../Context';
 
 export default function Tarjeta({elements}) {
-  const {updatelike} = useContext(favoritesContext);
-  const [like, setLike] = useState(false)
+  const {listFaves, updateListFaves} = useContext(favoritesContext);
+  //const [like, setLike] = useState(false) 32466259
 
 
   const clickLike = () =>{ 
-    console.log(elements)
-    if(like){
-      setLike(false)
-    }else{
-      setLike(true)
-    }
+    updateListFaves(elements.objectID)
   }
-
-
+  
+ const corazon = listFaves.includes(elements.objectID) ?<FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>
   return (
     <div className='container'>
         <div className='tarjeta'>
@@ -31,7 +26,7 @@ export default function Tarjeta({elements}) {
             </a>
                 <div onClick={clickLike} className='image'>
                     <div className='fixed'>
-                      {like ? <FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>}
+                      {corazon}
                     </div>  
                 </div>
             </div>
