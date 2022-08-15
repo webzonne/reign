@@ -4,7 +4,7 @@ import './TarjetaFave.css';
 
 
 export default function TarjetaFave({elements}) {
-    console.log(elements)
+
   return (
     <div className='container'>
         <div className='tarjeta'>

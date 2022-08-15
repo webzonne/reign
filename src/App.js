@@ -6,16 +6,22 @@ import {favoritesContext} from "./Context";
 import {useState } from "react";
 function App() {
   const [faves, setfaves] = useState([])
+  const [lista, setlist] = useState([])
 
-  const updateListFaves = (id)=>{
-    const idAll = [...faves];
-    const valorRepetido = idAll.indexOf(id)
-    if(valorRepetido >=0){
-      idAll.splice(valorRepetido, 1);
+  const updateListFaves = (element)=>{
+    const favoritos = [...faves]
+    const listkey = [...lista]
+    const indice = listkey.indexOf(element.objectID)
+    if(indice >=0){
+      listkey.splice(indice, 1)
+      const filtro = favoritos.filter((e)=>e.objectID !== element.objectID)
+      setfaves(filtro)
     }else{
-      idAll.push(id)
+      listkey.push(element.objectID);
+      favoritos.push(element)
+      setfaves(favoritos)
     }
-    setfaves(idAll)
+    setlist(listkey)
     console.log(faves)
   }
 

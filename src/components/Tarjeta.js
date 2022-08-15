@@ -10,10 +10,15 @@ export default function Tarjeta({elements}) {
 
 
   const clickLike = () =>{ 
-    updateListFaves(elements.objectID)
+    updateListFaves(elements)
   }
+
+    const listID = listFaves.map(e=>e.objectID)
+    const corazon = listID.includes(elements.objectID) ?<FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>
   
- const corazon = listFaves.includes(elements.objectID) ?<FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>
+    
+    // const corazon = listFaves.includes(elements.objectID) ?<FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>
+ 
   return (
     <div className='container'>
         <div className='tarjeta'>
