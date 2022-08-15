@@ -2,6 +2,21 @@
     text-decoration: none;
     color: black;
 }
+
+.HeaderHackerNew{
+  box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+}
+.HeaderHackerNew .title{
+  font-family: Baskerville;
+  font-size: 28px;
+  color: #3b3b3b;
+  margin: 0;
+  padding-top:44px;
+  padding-left: 150px;
+  padding-bottom: 42px;
+}
+
 .container{
   display: grid;
   grid-template-columns: repeat(auto-fill, 365px);
@@ -14,15 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 70px;
+  margin-bottom: 63px;
 }
 
-.All{
-  padding: 2px 20px;
-  border: 1px solid;
-  cursor: pointer;
-}
-.Faves{
-  padding: 2px 20px;
-  border: 1px solid;
-  cursor: pointer;
-}

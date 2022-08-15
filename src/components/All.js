@@ -4,6 +4,7 @@ import { getDataAngular, getDataReact, getDataVue } from "../Api";
 import Tarjeta from "../components/Tarjeta";
 import "./All.css";
 
+
 export default function All(like) {
   const [framework, setframework] = useState("");
   const [data, setdata] = useState("");
@@ -56,9 +57,11 @@ export default function All(like) {
   return (
     <div>
     <div className="AllComponent">
-        <select defaultValue={framework} onChange={(e)=>setframework(e.target.value)}>
+    
+    
+        <select className="select"  defaultValue={framework} onChange={(e)=>setframework(e.target.value)}>
               <option hidden>Select your news</option>
-              <option value="angular">Angular</option>
+              <option className="option" value="angular">Angular</option>
               <option value="react">React</option>
               <option value="vue">Vue</option>
         </select>

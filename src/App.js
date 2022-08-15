@@ -7,8 +7,10 @@ import {useState } from "react";
 function App() {
   const [faves, setfaves] = useState([])
   const [lista, setlist] = useState([])
+  const [activeAll, setactiveAll] = useState(true)
 
   const updateListFaves = (element)=>{
+    console.log(element)
     const favoritos = [...faves]
     const listkey = [...lista]
     const indice = listkey.indexOf(element.objectID)
@@ -25,28 +27,39 @@ function App() {
     console.log(faves)
   }
 
+  const clicAll = ()=>{
+    setactiveAll(true)
+  }
+  const clicFaves = ()=>{
+    setactiveAll(false)
+  }
+
   return (
     <favoritesContext.Provider value={{
       listFaves:faves,
       updateListFaves:updateListFaves
     }}>
     <div>
-      <div className="App"></div>
+      <header>
+        <div className="HeaderHackerNew">
+          <h1 className="title">HACKER NEWS</h1>
+        </div>
       <nav>
-        <h1>HACKER NEWS</h1>
+        
         <div className="AllAndFaves">
           <Link to="/">
-            <div className="All">
-              <p>ALL</p>
+            <div onClick={clicAll}>
+          { activeAll ?<p className="AllActive">All</p>:<p className="AllInactive">All</p>}
             </div>
           </Link>
           <Link to="/faves">
-            <div className="Faves">
-              <p>My faves</p>
+            <div onClick={clicFaves}>
+            { activeAll ?<p className="AllInactive">My faves</p>:<p className="AllActive">My faves</p>}
             </div>
           </Link>
         </div>
       </nav>
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<All

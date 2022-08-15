@@ -1,20 +1,52 @@
-.AllComponent{
-    margin: 150px 150px;
+.AllComponent select{
+    margin-left: 150px;
+    margin-bottom: 38px;
+    border-radius: 4px;
+    padding: 5px 12px 5px 12px;
+    border: solid 1px #2e2e2e;
+    background-color: #fff;
 }
+
+.select .option{
+  background-image: url("../images/icon-angular.png");
+}
+
 .Allcontainer{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 365px);
-    height:150px;
-    gap: 20px;
+    grid-template-columns: repeat(2, 550px);
+    height:90px;
+    gap:40px;
     padding: 10px;
     justify-content: center;
   }
-.selectores{
-    display: flex;
-    justify-content: center;
-}
-.selectores div{
+
+  .AllActive{
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: #1797ff;
+    padding:5px 40px;
+    margin: 0;
     border: 1px solid;
-    padding: 10px;
     cursor: pointer;
-}
+    border-radius: 2px;
+    border: solid 1px #1797ff;
+  }
+
+  .AllInactive{
+    border: 1px solid;
+    cursor: pointer;
+    border-radius: 2px;
+    border: solid 1px #d6d6d6;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 2px, 40px;
+    padding:5px 40px;
+    margin: 0;
+  }
+  .span-angular{
+    font-size: 2em;
+    color: rgb(255, 71, 71);
+  }

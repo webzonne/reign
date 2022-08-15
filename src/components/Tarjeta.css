@@ -1,17 +1,59 @@
 .tarjeta{
-    border: 1px solid gray;
-    border-radius:5px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    border-radius: 6px;
+    width: 550px;
+    height:auto;
+}
+.tarjeta:hover{
+    opacity: 0.4;
 }
 .card{
     display: flex;
-    height:150px;
-}
-.card a{
-    width: 80%;
-    height:150px;
+    
 }
 
+.text{
+    padding-top: 16px;
+    padding-left: 26px;
+}
+
+.text div{
+    display: flex;
+    align-items: center;
+}
+
+.text .fecha{
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  color: #767676;
+  margin: 0;
+  margin-left:5px;
+}
+
+.text .fecha img{
+    margin-right:8px;
+}
+
+.text .title{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: #6b6b6b;
+  margin-top: 7px;
+  margin-bottom: 23px;
+}
+.card a{
+    width: 482px;
+    height:90px;
+}
 .image{
-    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
     cursor: pointer;
+    width: 68px;
+    background-color: #fcfcfc;
 }
