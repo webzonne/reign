@@ -14,11 +14,14 @@
 .Allcontainer{
     display: grid;
     grid-template-columns: repeat(2, 550px);
-    height:90px;
+    height:80vh;
     gap:40px;
     padding: 10px;
     justify-content: center;
-  }
+}
+.cargando{
+  border:1px solid;
+}
 
   .AllActive{
     font-family: Roboto;

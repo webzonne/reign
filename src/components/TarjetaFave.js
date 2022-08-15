@@ -1,7 +1,7 @@
 import React from 'react';
-import { FcLike} from 'react-icons/fc';
 import "./All.css";
 import './Tarjeta.css';
+import heart from '../images/corazon.png';
 
 export default function TarjetaFave({elements}) {
 
@@ -17,7 +17,7 @@ export default function TarjetaFave({elements}) {
             </a>
                 <div className='image'>
                     <div className='fixed'>
-                        <FcLike size='25px'/>
+                        <img src={heart} alt="icon-heart"/>
                     </div>  
                 </div>
             </div>
