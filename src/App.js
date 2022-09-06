@@ -9,6 +9,8 @@ function App() {
   const [lista, setlist] = useState([])
   const [activeAll, setactiveAll] = useState(true)
 
+
+
   const updateListFaves = (element)=>{
     console.log(element)
     const favoritos = [...faves]

@@ -3,76 +3,77 @@ import { useEffect, useState } from "react";
 import { getDataAngular, getDataReact, getDataVue } from "../Api";
 import Tarjeta from "../components/Tarjeta";
 import "./All.css";
-import InfiniteScroll from "react-infinite-scroll-component";
+//import InfiniteScroll from "react-infinite-scroll-component";
 
 
 export default function All(like) {
   const [framework, setframework] = useState("");
   const [data, setdata] = useState("");
-  const [count, setcount] = useState(0);
 
-
+  const orden = (a,b) =>{
+    if(a.created_at > b.created_at){
+      return -1
+    }
+    if(a.created_at < b.created_at){
+      return 1
+    }
+  }
   useEffect(() => {
     
     const getData = async () => {
       switch (framework) {
         case "angular":
-          console.log(count)
-          const datoAngular = await getDataAngular(count); //datos Api
+          const datoAngular = await getDataAngular(); //datos Api
           const datoFiltradoAngular = datoAngular.hits.filter(
             (e) => e.story_url && e.story_title && e.created_at != null
-          ); // filtro datos api
-          localStorage.setItem('saveData', JSON.stringify(datoFiltradoAngular)) // localStorage
+          ).sort(orden); // filtro datos api
+          setdata(datoFiltradoAngular)
+          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoAngular)) // localStorage
           break;
         case "react":
           const datoReact = await getDataReact();
           const datoFiltradoReact = datoReact.hits.filter(
             (e) => e.story_url && e.story_title && e.created_at != null
-          );
-          localStorage.setItem('saveData', JSON.stringify(datoFiltradoReact))
+          ).sort(orden);
+          setdata(datoFiltradoReact)
+          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoReact))
           break;
         case "vue":
           const datoVue = await getDataVue();
           const datoFiltradoVue = datoVue.hits.filter(
             (e) => e.story_url && e.story_title && e.created_at != null
-          );
-          localStorage.setItem('saveData', JSON.stringify(datoFiltradoVue))
+          ).sort(orden);
+          setdata(datoFiltradoVue)
+          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoVue))
           break;
         default:
-          const datoDefault = await getDataAngular(count);
-          const datoFiltadroDefault = datoDefault.hits.filter(
+          const datoDefault = await getDataAngular();
+           const datoFiltadroDefault = datoDefault.hits.filter(
             (e) => e.story_url && e.story_title && e.created_at != null
-          );
-          localStorage.setItem('saveData', JSON.stringify(datoFiltadroDefault))
+          ).sort(orden);
+          //localStorage.setItem('saveData', JSON.stringify(datoFiltadroDefault))
+          setdata(datoFiltadroDefault)
           break;
       }
+      //setdata(localStorage.getItem('saveData'))
     };
-    getData();
-    const localData = JSON.parse(localStorage.getItem('saveData'));
-    if(localData){
-      setdata(localData)
-    }
+    getData()
+    // localStorage.setItem('saveData', JSON.stringify(data))
+    // const localData = JSON.parse(localStorage.getItem('saveData'));
+    // console.log(localData)
+    //   if(localData){
+    //     setdata(localData)
+    //   }else{
+    //     getData()
+    //   }
     
-  }, [framework,count]);
+    
+  }, [framework]);
 
-  const pageNext = ()=>{
-    setcount(count+1)
-}
 
   return (
     
     <div>
-      <InfiniteScroll
-  dataLength={data.length} //This is important field to render the next data
-  next={pageNext}
-  hasMore={true}
-  loader={<h4>Loading...</h4>}
-  endMessage={
-    <p style={{ textAlign: 'center' }}>
-      <b>Yay! You have seen it all</b>
-    </p>
-  }
->
   
 
     <div className="AllComponent">
@@ -95,12 +96,6 @@ export default function All(like) {
               )
             })}
       </div>
-      <div className="cargando">
-        <p>cargando</p>
-      </div>
-      
-    
-    </InfiniteScroll>
     </div>
    
   );

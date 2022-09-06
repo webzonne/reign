@@ -1,3 +1,7 @@
+.test{
+  border: 1px solid;
+  text-align: center;
+}
 .AllComponent select{
     margin-left: 150px;
     margin-bottom: 38px;
@@ -13,8 +17,7 @@
 
 .Allcontainer{
     display: grid;
-    grid-template-columns: repeat(2, 550px);
-    height:80vh;
+    grid-template-columns: repeat(auto-fill, 550px);
     gap:40px;
     padding: 10px;
     justify-content: center;

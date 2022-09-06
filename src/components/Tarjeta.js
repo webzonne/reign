@@ -10,7 +10,7 @@ import moment from 'moment';
 
 export default function Tarjeta({elements}) {
   const {listFaves, updateListFaves} = useContext(favoritesContext);
-  const formatoTime = moment(elements.created_at).fromNow();
+  //const formatoTime = moment(elements.created_at).fromNow();
 
 
   const clickLike = () =>{ 
@@ -30,7 +30,7 @@ export default function Tarjeta({elements}) {
             <a  rel="noopener noreferrer" target="_blank" href={elements.story_url}>
                 <div className='text'>
                   <div>
-                    <img src={reloj} alt="icon-reloj"/><p className='fecha'>{formatoTime} by {elements.author}</p>
+                    <img src={reloj} alt="icon-reloj"/><p className='fecha'>{moment(elements.created_at).fromNow()} by {elements.author}</p>
                   </div>
                     <p className='title'>{elements.story_title}</p>
                 </div>
