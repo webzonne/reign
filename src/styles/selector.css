@@ -1,0 +1,47 @@
+.selector{
+    margin-top: 150px;
+    margin-bottom: 2.375rem;
+    margin-left: 150px;
+    position: relative;
+    cursor: pointer;
+}
+.select{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    border: solid 1px #2e2e2e;
+    max-width:15rem;    
+    height:auto;
+    padding: 0.313rem 0;
+    padding-left:10px;
+    border-radius: 4px;
+}
+
+.select img{
+    margin-right: 0.75rem;
+}
+.box{
+    position: absolute;
+    background:white;
+    width:250px;
+    box-shadow: 0 2px 2px 0 #dad8d8;
+}
+.box-framework{
+    display: flex;
+    height:25px;
+    align-items: center;
+}
+
+.box .box-framework{
+    display: flex;
+    height:25px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.box .box-framework:hover{
+    background: hsla(207, 100%, 55%, 0.579);
+}
+.box img{
+    margin: 0 10px;
+}

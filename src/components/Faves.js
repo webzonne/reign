@@ -1,16 +1,16 @@
 import React from 'react'
-import {favoritesContext} from '../Context';
+import DatoGlobalContext from '../Context';
 import { useContext } from 'react';
-import TarjetaFave from './TarjetaFave';
+import Tarjeta from './Tarjeta';
 
 
 export default function Faves() {
-  const {listFaves} = useContext(favoritesContext)
+  const {listFaves} = useContext(DatoGlobalContext)
   return (
     <div className='Allcontainer'>
         {listFaves.map((e)=>{
           return(
-           <TarjetaFave key={e.objectID}
+           <Tarjeta key={e.objectID}
            elements={e}
            />
           )

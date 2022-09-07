@@ -1,15 +1,36 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { getDataAngular, getDataReact, getDataVue } from "../Api";
+import { useState } from "react";
+import {dataApi} from "../Api"
 import Tarjeta from "../components/Tarjeta";
+import iconAngular from "../images/icon-angular.png";
+import iconReact from "../images/icon-react.png";
+import iconVue from "../images/icon-vue.png";
+import SelectAngular from "./SelectAngular";
+import SelectReact from "./SelectReact";
+import SelectVue from "./SelectVue";
+import flecha from "../images/flecha.jpg"
 import "./All.css";
-//import InfiniteScroll from "react-infinite-scroll-component";
+import "../styles/selector.css"
+//import InfiniteScroll from "react-infinite-scrsoll-component";
 
 
-export default function All(like) {
-  const [framework, setframework] = useState("");
-  const [data, setdata] = useState("");
+export default function All() {
+  //const {listFaves,setlistFaves,updatelistfaves} = useContext(datoGlobalContext)
+  const [framework, setframework] = useState(JSON.parse(localStorage.getItem('framework')) ||"");
+  const [data, setdata] = useState(JSON.parse(localStorage.getItem('apidata'))||[]);
+  const [actSelect, setactSelect] = useState(false);
 
+ 
+
+  // Selectactive
+  const activarSelect = () => {
+    setactSelect(!actSelect);
+  };
+  const onblur = () => {
+    setactSelect(!actSelect);
+  };
+
+  // Orden
   const orden = (a,b) =>{
     if(a.created_at > b.created_at){
       return -1
@@ -18,73 +39,94 @@ export default function All(like) {
       return 1
     }
   }
-  useEffect(() => {
-    
-    const getData = async () => {
-      switch (framework) {
-        case "angular":
-          const datoAngular = await getDataAngular(); //datos Api
-          const datoFiltradoAngular = datoAngular.hits.filter(
-            (e) => e.story_url && e.story_title && e.created_at != null
-          ).sort(orden); // filtro datos api
-          setdata(datoFiltradoAngular)
-          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoAngular)) // localStorage
-          break;
-        case "react":
-          const datoReact = await getDataReact();
-          const datoFiltradoReact = datoReact.hits.filter(
-            (e) => e.story_url && e.story_title && e.created_at != null
-          ).sort(orden);
-          setdata(datoFiltradoReact)
-          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoReact))
-          break;
-        case "vue":
-          const datoVue = await getDataVue();
-          const datoFiltradoVue = datoVue.hits.filter(
-            (e) => e.story_url && e.story_title && e.created_at != null
-          ).sort(orden);
-          setdata(datoFiltradoVue)
-          //localStorage.setItem('saveData', JSON.stringify(datoFiltradoVue))
-          break;
-        default:
-          const datoDefault = await getDataAngular();
-           const datoFiltadroDefault = datoDefault.hits.filter(
-            (e) => e.story_url && e.story_title && e.created_at != null
-          ).sort(orden);
-          //localStorage.setItem('saveData', JSON.stringify(datoFiltadroDefault))
-          setdata(datoFiltadroDefault)
-          break;
-      }
-      //setdata(localStorage.getItem('saveData'))
-    };
-    getData()
-    // localStorage.setItem('saveData', JSON.stringify(data))
-    // const localData = JSON.parse(localStorage.getItem('saveData'));
-    // console.log(localData)
-    //   if(localData){
-    //     setdata(localData)
-    //   }else{
-    //     getData()
-    //   }
-    
-    
-  }, [framework]);
 
+  // ONCLICK
+  //ANGULAR
+  const clickAngular = async() => {
+    const frame = "angular"
+    const datos = await dataApi(frame)
+    const datoFiltradoAngular = datos.filter((e)=> e.story_url && e.story_title && e.created_at != null).sort(orden)
+    setdata(datoFiltradoAngular)
+    localStorage.setItem('apidata', JSON.stringify(datoFiltradoAngular))
+    console.log(datos)
+    setframework(frame);
+    localStorage.setItem('framework', JSON.stringify(frame))
+  };
+  //REACT
+  const clickReact = async() => {
+    const frame = "react";
+    const datos = await dataApi(frame)
+    const datoFiltradoReact = datos.filter((e)=>e.story_url && e.story_title && e.created_at != null).sort(orden)
+    setdata(datoFiltradoReact)
+    localStorage.setItem('apidata', JSON.stringify(datoFiltradoReact))
+    setframework(frame);
+    localStorage.setItem('framework', JSON.stringify(frame))
+  };
+  //VUE
+  const clickVue = async() => {
+    const frame = "vue";
+    const datos = await dataApi(frame)
+    const datoFiltradoVue = datos.filter((e)=>e.story_url && e.story_title && e.created_at != null).sort(orden)
+    setdata(datoFiltradoVue)
+    localStorage.setItem('apidata', JSON.stringify(datoFiltradoVue))
+    setframework(frame);
+    localStorage.setItem('framework', JSON.stringify(frame))
+  };
+  let estadoSelect = "select your news";
+  // SELECT FRAMEWORK
+  switch (framework) {
+    case "angular":
+      estadoSelect = <SelectAngular />;
+      break;
+    case "react":
+      estadoSelect = <SelectReact />;
+      break;
+    case "vue":
+      estadoSelect = <SelectVue />;
+      break;
+    default:
+      estadoSelect = "select your news";
+      break;
+  }
 
   return (
     
     <div>
   
-
+    {/* select comienza */}
+    <div className="selector">
+      <div
+        onClick={activarSelect}
+        tabIndex="0"
+        onBlur={() => setTimeout(() => setactSelect(!actSelect), 250)}
+        className="select"
+      >
+        {estadoSelect}
+        <img src={flecha} alt="flecha" />
+      </div>
+      {actSelect && (
+        <div tabIndex="0" onBlur={onblur} className="box">
+          {/* angular */}
+          <div onClick={clickAngular} className="box-framework">
+            <img src={iconAngular} alt="iconAngular" /> <span>Angular</span>
+          </div>
+          {/* react */}
+          <div onClick={clickReact} className="box-framework">
+            <img src={iconReact} alt="iconReact" />
+            <span>React</span>
+          </div>
+          {/* vue */}
+          <div onClick={clickVue} className="box-framework">
+            <img src={iconVue} alt="iconVue" />
+            <span>Vue</span>
+          </div>
+        </div>
+      )}
+    </div>
+    {/* <div><p>{listFaves.lenght ? listFaves.lenght:0}</p></div> */}
+    {/* select termina */}
     <div className="AllComponent">
-    
-    
-        <select className="select"  defaultValue={framework} onChange={(e)=>setframework(e.target.value)}>
-              <option hidden>Select your news</option>
-              <option className="option" value="angular">Angular</option>
-              <option value="react">React</option>
-              <option value="vue">Vue</option>
-        </select>
+
     </div>
       <div className="Allcontainer">
        { data && data.map((elements)=>{

@@ -1,31 +1,24 @@
 import React from 'react';
-//import { FcLike, FcLikePlaceholder } from 'react-icons/fc';
 import './Tarjeta.css';
 import { useContext } from 'react';
-import {favoritesContext} from '../Context';
+import DatoGlobalContext from '../Context';
 import heart from '../images/corazon.png';
 import vacio from '../images/vacio.png';
 import reloj from '../images/reloj.png';
 import moment from 'moment';
 
 export default function Tarjeta({elements}) {
-  const {listFaves, updateListFaves} = useContext(favoritesContext);
-  //const formatoTime = moment(elements.created_at).fromNow();
+  const {listFaves,updatelistFaves} = useContext(DatoGlobalContext)
+  const corazon = listFaves.find((e)=> e.objectID === elements.objectID) ? heart:vacio
 
-
-  const clickLike = () =>{ 
-    updateListFaves(elements)
-  }
-
-    const listID = listFaves.map(e=>e.objectID)
-    const corazon = listID.includes(elements.objectID)
-    //?<FcLike size='25px'/>:<FcLikePlaceholder size='25px'/>
     
-    
+   const onclickTarjeta = (elements)=>{
+    updatelistFaves(elements)
+   }
  
   return (
     <div>
-        <div className='tarjeta'>
+        <div onClick={()=>onclickTarjeta(elements)} className='tarjeta'>
             <div className='card'>
             <a  rel="noopener noreferrer" target="_blank" href={elements.story_url}>
                 <div className='text'>
@@ -35,9 +28,9 @@ export default function Tarjeta({elements}) {
                     <p className='title'>{elements.story_title}</p>
                 </div>
             </a>
-                <div onClick={clickLike} className='image'>
+                <div className='image'>
                     <div className='fixed'>
-                      {corazon ? <img src={heart} alt="icon-heart"/>:<img src={vacio} alt="icon-heart"/>}
+                      {<img src={corazon} alt="icon-heart"/>}
                     </div>  
                 </div>
             </div>

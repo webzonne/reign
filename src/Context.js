@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
-export const favoritesContext = React.createContext({
-    listFaves: [],
-    updateListFaves: (id) => null
-});
-export const likefavoritesContext = React.createContext({
-    like:false,
-    updatelike: (id) => null
-});
+const DatoGlobalContext = React.createContext({
+     listFaves:[],
+     updatelistFaves: (id)=> null
+    }); 
+export const DatoGlobalContextProvider =DatoGlobalContext.Provider
+
+export default DatoGlobalContext
