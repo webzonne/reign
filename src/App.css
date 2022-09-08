@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Baskervville&family=Roboto:wght@500&display=swap');
 *{
-    text-decoration: none;
+    text-decoration: none!important;
     color: black;
 }
 
@@ -8,8 +9,8 @@
   background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
 }
 .HeaderHackerNew .title{
-  font-family: Baskerville;
-  font-size: 28px;
+  font-family: 'Baskervville', serif;
+  font-size:1.75rem;
   color: #3b3b3b;
   margin: 0;
   padding-top:44px;
@@ -30,6 +31,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 70px;
-  margin-bottom: 63px;
+  margin-bottom:3.938rem;
 }
-
+@media (max-width:600px){
+  .HeaderHackerNew .title{
+    padding-left: 0;
+    text-align: center;
+  }
+}

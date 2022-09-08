@@ -1,6 +1,6 @@
 import React from 'react';
 import "./All.css";
-import './Tarjeta.css';
+import './styles/Tarjeta.css';
 import heart from '../images/corazon.png';
 
 export default function TarjetaFave({elements}) {

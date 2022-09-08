@@ -55,5 +55,10 @@
     height: 90px;
     cursor: pointer;
     width: 68px;
-    background-color: #fcfcfc;
+    background-color: hsla(0, 0%, 38%, 0.059);
+}
+@media(max-width:600px){
+    .tarjeta{
+        width: 360px;
+    }
 }

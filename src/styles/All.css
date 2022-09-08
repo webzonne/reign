@@ -23,12 +23,12 @@
     justify-content: center;
 }
 .cargando{
-  border:1px solid;
+  text-align: center;
 }
 
   .AllActive{
-    font-family: Roboto;
-    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
     font-weight: 500;
     text-align: center;
     color: #1797ff;
@@ -55,4 +55,10 @@
   .span-angular{
     font-size: 2em;
     color: rgb(255, 71, 71);
+  }
+
+  @media(max-width:600px){
+    .Allcontainer{
+      grid-template-columns: repeat(auto-fill, 360px);
+    }
   }

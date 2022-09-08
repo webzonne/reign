@@ -1,5 +1,5 @@
 import React from 'react';
-import './Tarjeta.css';
+import '../styles/Tarjeta.css';
 import { useContext } from 'react';
 import DatoGlobalContext from '../Context';
 import heart from '../images/corazon.png';

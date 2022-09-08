@@ -4,6 +4,7 @@ import Faves from "./components/Faves";
 import All from "./components/All";
 import {useState } from "react";
 import {DatoGlobalContextProvider } from './Context';
+
 function App() {
   const [listFaves, setlistFaves] = useState(JSON.parse(localStorage.getItem('favoritos'))||[])
   const [activeAll, setactiveAll] = useState(JSON.parse(localStorage.getItem('buttonActive'))||false)
@@ -25,6 +26,7 @@ function App() {
       if(buscar){
         const updateData = listFaves.filter((e)=> e.objectID !== elements.objectID)
         setlistFaves(updateData)
+        localStorage.setItem('favoritos', JSON.stringify(updateData))
       }else{
         const updateData = [...listFaves, elements]
         localStorage.setItem('favoritos', JSON.stringify(updateData))
@@ -37,6 +39,7 @@ function App() {
       listFaves:listFaves,
       updatelistFaves:updatelistFaves
     }}>
+     
     <div>
       <header>
         <div className="HeaderHackerNew">
@@ -67,6 +70,7 @@ function App() {
         </Routes>
       </main>
     </div>
+    
     </DatoGlobalContextProvider>
   );
 }
